@@ -1,22 +1,20 @@
 // mongodb.js
 
-import { strict } from 'assert'
 import { MongoClient } from 'mongodb'
 
 const uri = process.env.MONGODB_URI
 const options = {
   serverApi: {
+    version: '1',  
     strict: true,
     deprecationErrors: true
-  },
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
+  }
 }
 
 let client
 let clientPromise
 
-if (!process.env.MONGODB_URI) {
+if (!uri) {
   throw new Error('Add Mongo URI to .env.local')
 }
 
